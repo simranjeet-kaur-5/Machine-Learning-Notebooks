@@ -1,0 +1,67 @@
+# 📊 Handling Outliers
+
+Outliers are data points that are significantly different from the rest of the dataset. They can affect statistical analysis and machine learning model performance, so detecting and handling them is an important preprocessing step.
+
+## 1. Z-Score Method
+
+**Definition:**  
+The Z-Score measures how many standard deviations a data point is away from the mean.
+
+**Formula:**
+
+\[
+Z = \frac{x - \mu}{\sigma}
+\]
+
+- **x** = Data point
+- **μ** = Mean
+- **σ** = Standard deviation
+
+**Rule:**  
+A value is typically considered an outlier if **|Z| > 3**.
+
+---
+
+## 2. IQR (Interquartile Range) Method
+
+**Definition:**  
+The IQR method identifies outliers using the spread of the middle 50% of the data.
+
+**Formula:**
+
+\[
+IQR = Q3 - Q1
+\]
+
+**Bounds:**
+
+- **Lower Bound:** \(Q1 - 1.5 \times IQR\)
+- **Upper Bound:** \(Q3 + 1.5 \times IQR\)
+
+Values outside these bounds are treated as outliers.
+
+---
+
+## 3. Winsorization
+
+**Definition:**  
+Winsorization handles outliers by replacing extreme values with a specified lower and upper percentile instead of removing them.
+
+**Example:**
+
+```
+Original:      5, 8, 10, 12, 100
+Winsorized:    5, 8, 10, 12, 20
+```
+
+This method preserves the dataset size while reducing the influence of extreme values.
+
+---
+
+## 📌 Summary
+
+| Method | Best For |
+|--------|----------|
+| **Z-Score** | Normally distributed data |
+| **IQR** | Skewed or non-normal data |
+| **Winsorization** | Capping extreme values without removing data |
